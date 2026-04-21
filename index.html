@@ -31,7 +31,7 @@
             overflow-x: hidden;
         }
 
-        /* Akışkan Arka Plan Efekti */
+        /* Akışkan Arka Plan */
         .aurora-bg {
             position: fixed;
             top: 0;
@@ -39,15 +39,15 @@
             width: 100%;
             height: 100%;
             z-index: -1;
-            background: radial-gradient(circle at 20% 30%, rgba(99, 102, 241, 0.15) 0%, transparent 40%),
-                        radial-gradient(circle at 80% 70%, rgba(168, 85, 247, 0.15) 0%, transparent 40%);
+            background: radial-gradient(circle at 20% 30%, rgba(99, 102, 241, 0.1) 0%, transparent 40%),
+                        radial-gradient(circle at 80% 70%, rgba(168, 85, 247, 0.1) 0%, transparent 40%);
             filter: blur(80px);
             animation: moveAurora 20s infinite alternate linear;
         }
 
         @keyframes moveAurora {
             from { transform: scale(1); }
-            to { transform: scale(1.2) translate(5%, 5%); }
+            to { transform: scale(1.1) translate(2%, 2%); }
         }
 
         nav {
@@ -57,7 +57,7 @@
             transform: translateX(-50%);
             background: rgba(15, 23, 42, 0.6);
             backdrop-filter: blur(15px);
-            padding: 12px 30px;
+            padding: 10px 25px;
             border-radius: 40px;
             border: 1px solid var(--border);
             z-index: 1000;
@@ -68,20 +68,28 @@
         nav a {
             color: var(--muted);
             text-decoration: none;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: 500;
             transition: 0.3s;
         }
 
         nav a:hover { color: var(--text); }
 
-        header {
-            height: 100vh;
+        /* Dinamik Geçiş İçin Section Konteynırı - DAHA YAVAŞ GEÇİŞ */
+        section, header {
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding: 0 10%;
+            align-items: center;
+            text-align: center;
+            padding: 100px 10%;
+            /* Geçiş süresi 0.6s'den 1s'ye çıkarıldı */
+            transition: transform 1s ease-out, opacity 1s ease-out, filter 1s ease-out;
+            will-change: transform, opacity, filter;
         }
+
+        header { padding: 0 5%; }
 
         .status-badge {
             display: inline-block;
@@ -93,18 +101,16 @@
             font-weight: 600;
             margin-bottom: 20px;
             border: 1px solid rgba(99, 102, 241, 0.2);
-            width: fit-content;
         }
 
         h1 {
             font-size: clamp(2.5rem, 8vw, 5rem);
             font-weight: 700;
             letter-spacing: -2px;
-            line-height: 1;
+            line-height: 1.1;
             margin-bottom: 10px;
         }
 
-        /* Daktilo Efekti Stili */
         .typing-container { 
             font-size: 1.5rem; 
             font-weight: 400;
@@ -113,25 +119,16 @@
             margin-bottom: 30px;
         }
         #typewriter { color: var(--text); font-weight: 600; }
-        @keyframes blink {
-            0% { opacity: 1; }
-            50% { opacity: 0; }
-            100% { opacity: 1; }
-        }
 
         .hero-desc {
-            max-width: 650px;
+            max-width: 700px;
             font-size: 1.2rem;
             color: var(--muted);
             margin-bottom: 30px;
         }
 
-        section {
-            padding: 100px 10%;
-        }
-
         h2 {
-            font-size: 2rem;
+            font-size: 2.2rem;
             margin-bottom: 50px;
             font-weight: 600;
         }
@@ -140,6 +137,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
+            width: 100%;
         }
 
         .card {
@@ -147,32 +145,21 @@
             border: 1px solid var(--border);
             padding: 40px;
             border-radius: 24px;
-            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            text-align: left;
+            transition: transform 0.3s ease;
         }
 
         .card:hover {
-            background: rgba(255, 255, 255, 0.05);
-            transform: translateY(-10px);
             border-color: rgba(99, 102, 241, 0.3);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-        }
-
-        .card h3 {
-            font-size: 1.25rem;
-            margin-bottom: 15px;
-            color: var(--text);
-        }
-
-        .card p {
-            color: var(--muted);
-            font-size: 0.95rem;
-            margin-bottom: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateY(-5px);
         }
 
         .tags {
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
+            margin-top: 15px;
         }
 
         .tag {
@@ -184,27 +171,34 @@
             border: 1px solid var(--border);
         }
 
+        /* Teknoloji Çantası Kart Stili (Eski Versiyona Dönüş) */
         .skills-container {
             background: var(--glass);
             border: 1px solid var(--border);
-            padding: 50px;
-            border-radius: 32px;
+            padding: 40px;
+            border-radius: 24px;
+            text-align: center;
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
         }
 
-        .skill-group {
-            margin-bottom: 30px;
-        }
-
-        .skill-group h4 {
+        .skill-group { margin-bottom: 30px; }
+        
+        .skill-group h3 {
+            font-size: 1rem;
             color: var(--muted);
-            font-size: 0.8rem;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
             margin-bottom: 15px;
         }
 
+        .skill-group .tags {
+            justify-content: center;
+        }
+
         footer {
-            padding: 100px 10%;
+            padding: 80px 10%;
             text-align: center;
             border-top: 1px solid var(--border);
         }
@@ -213,7 +207,7 @@
             display: flex;
             justify-content: center;
             gap: 30px;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
         }
 
         .social-icons a {
@@ -227,22 +221,27 @@
             transform: scale(1.1);
         }
 
-        /* Dinamik Animasyon (Reveal Effect) Sınıfları */
+        /* Başlangıçta görünmezlik (Reveal için) */
         .reveal {
             opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+            transform: translateY(50px) scale(0.95);
+            filter: blur(10px);
         }
 
-        .reveal.active {
+        .reveal.visible {
             opacity: 1;
-            transform: translateY(0);
+            transform: translateY(0) scale(1);
+            filter: blur(0px);
         }
-        
-        /* Kartlara gecikmeli gelme efekti */
-        .grid .card:nth-child(1) { transition-delay: 0.1s; }
-        .grid .card:nth-child(2) { transition-delay: 0.2s; }
-        .grid .card:nth-child(3) { transition-delay: 0.3s; }
+
+        /* Yukarı Kaydırırken Gölgelenip Kaybolma Sınıfı - DAHA HAFİF EFEKT */
+        .fade-out {
+            opacity: 0 !important;
+            transform: translateY(-30px) scale(0.95) !important;
+            filter: blur(10px) brightness(0.7) !important;
+        }
+
+        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0; } 100% { opacity: 1; } }
 
     </style>
 </head>
@@ -251,51 +250,53 @@
     <div class="aurora-bg"></div>
 
     <nav>
+        <a href="#home">Giriş</a>
         <a href="#hakkimda">Hakkımda</a>
         <a href="#deneyim">Deneyim</a>
         <a href="#projeler">Projeler</a>
-        <a href="#iletisim">İletişim</a>
+        <a href="#yetenekler">Yetenekler</a>
     </nav>
 
-    <header>
+    <header id="home" class="scroll-section">
         <div class="status-badge">Akdeniz Üniversitesi Bilgisayar Mühendisliği Öğrencisi</div>
-        <h1>Şükran Hilal <br> Hocaoğlu</h1>
+        <h1>Şükran Hilal Hocaoğlu</h1>
         
         <div class="typing-container">
             Ben bir <span id="typewriter"></span><span style="color: var(--accent); animation: blink 1s infinite;">|</span>
         </div>
 
-        <p class="hero-desc">Ölçeklenebilir backend sistemleri, yapay zeka entegrasyonları ve verimlilik odaklı mimariler üzerine çalışan bir mühendis adayıyım.</p>
-        <div class="social-icons" style="justify-content: flex-start;">
+        <p class="hero-desc">Sistemler, yapay zeka entegrasyonları ve verimlilik odaklı mimariler üzerine çalışan bir mühendis adayıyım.</p>
+        
+        <div class="social-icons">
             <a href="https://www.linkedin.com/in/%C5%9F-hilal-hocao%C4%9Flu-a8311221a/" target="_blank"><i class="fab fa-linkedin"></i></a>
             <a href="mailto:hilalhocaoglu20@gmail.com"><i class="fas fa-envelope"></i></a>
         </div>
     </header>
 
-    <section id="hakkimda" class="reveal">
+    <section id="hakkimda" class="scroll-section reveal">
         <h2>Hakkımda</h2>
         <div style="max-width: 800px; font-size: 1.2rem; color: var(--muted);">
             <p>Akdeniz Üniversitesi'nde 3. sınıf öğrencisiyim. Karmaşık sistem mimarilerini sadeleştirme ve yapay zekayı pratik çözümlere dönüştürme konusunda tutkuluyum. .NET ekosistemi, Python ve modern AI araçlarıyla projeler geliştiriyorum.</p>
         </div>
     </section>
 
-    <section id="deneyim" class="reveal">
+    <section id="deneyim" class="scroll-section reveal">
         <h2>Deneyim</h2>
         <div class="grid">
             <div class="card">
-                <span style="color: var(--accent); font-weight: 600;">Haziran 2025 - Ağustos 2025</span>
-                <h3>Software Development Intern</h3>
-                <p><strong>SAN TSG</strong><br>AI tabanlı "RAGby" asistanı için veri boru hatları ve backend optimizasyonları üzerine çalışıldı.</p>
+                <span style="color: var(--accent); font-weight: 600; font-size: 0.8rem;">Haziran 2025 - Ağustos 2025</span>
+                <h3 style="margin: 10px 0;">Software Development Intern</h3>
+                <p><strong>SAN TSG</strong><br>AI tabanlı "RAGby" asistanı için veri boru hatları ve sistem optimizasyonları üzerine çalışıldı.</p>
             </div>
             <div class="card">
-                <span style="color: var(--accent); font-weight: 600;">Kasım 2025 - Devam Ediyor</span>
-                <h3>Student Support Team Member</h3>
+                <span style="color: var(--accent); font-weight: 600; font-size: 0.8rem;">Kasım 2025 - Devam Ediyor</span>
+                <h3 style="margin: 10px 0;">Student Support Team Member</h3>
                 <p><strong>Akdeniz Üniversitesi Bilgi İşlem</strong><br>Üniversite IT altyapısı ve sistem yönetimi süreçlerinde teknik destek operasyonları.</p>
             </div>
         </div>
     </section>
 
-    <section id="projeler" class="reveal">
+    <section id="projeler" class="scroll-section reveal">
         <h2>Öne Çıkan Projeler</h2>
         <div class="grid">
             <div class="card">
@@ -322,36 +323,45 @@
         </div>
     </section>
 
-    <section id="iletisim" class="reveal">
+    <section id="yetenekler" class="scroll-section reveal">
+        <h2>Yetenekler & Teknolojiler</h2>
         <div class="skills-container">
-            <h2>Teknoloji Çantam</h2>
             <div class="skill-group">
-                <h4>Diller</h4>
+                <h3>Programlama Dilleri</h3>
                 <div class="tags">
-                    <span class="tag">Python</span> <span class="tag">C#</span> <span class="tag">Java</span> <span class="tag">Kotlin</span> <span class="tag">JavaScript</span>
+                    <span class="tag">Python</span> <span class="tag">Java</span> <span class="tag">C# (.NET)</span> 
+                    <span class="tag">Kotlin</span> <span class="tag">JavaScript/TypeScript</span> <span class="tag">SQL</span>
                 </div>
             </div>
             <div class="skill-group">
-                <h4>Framework & Araçlar</h4>
+                <h3>Framework & Kütüphaneler</h3>
                 <div class="tags">
-                    <span class="tag">ASP.NET Core</span> <span class="tag">Django</span> <span class="tag">LangChain</span> <span class="tag">React Native</span> <span class="tag">Git</span> <span class="tag">Docker</span>
+                    <span class="tag">ASP.NET Core</span> <span class="tag">Django</span> <span class="tag">React Native</span> 
+                    <span class="tag">Expo</span> <span class="tag">Flask</span> <span class="tag">LangChain</span>
+                </div>
+            </div>
+            <div class="skill-group" style="margin-bottom: 0;">
+                <h3>Veritabanı & Altyapı</h3>
+                <div class="tags">
+                    <span class="tag">PostgreSQL</span> <span class="tag">MS SQL Server</span> <span class="tag">MySQL</span> 
+                    <span class="tag">ChromaDB</span> <span class="tag">Git</span> <span class="tag">Linux</span> 
+                    <span class="tag">REST APIs</span> <span class="tag">AWS EC2</span>
                 </div>
             </div>
         </div>
     </section>
 
     <footer id="iletisim">
-        <p style="margin-bottom: 20px; color: var(--muted);">Benimle iletişime geçin</p>
         <div class="social-icons">
             <a href="https://www.linkedin.com/in/%C5%9F-hilal-hocao%C4%9Flu-a8311221a/" target="_blank"><i class="fab fa-linkedin"></i></a>
             <a href="mailto:hilalhocaoglu20@gmail.com"><i class="fas fa-envelope"></i></a>
         </div>
-        <p style="font-size: 0.8rem; color: var(--muted);">&copy; 2026 Hilal Hocaoğlu. Sevgilerle.</p>
+        <p style="font-size: 0.85rem; color: var(--muted);">&copy; 2026 Hilal Hocaoğlu. Sevgilerle.</p>
     </footer>
 
     <script>
-        // Daktilo Efekti JavaScript Kodları
-        const words = ["Backend Geliştiricisiyim.", "Yapay Zeka Tutkunuyum.", "Sistem Mimarileri Tasarlıyorum."];
+        // Daktilo Efekti
+        const words = ["Yazılım Mühendisliği Geliştiricisiyim.", "Yapay Zeka Tutkunuyum.", "Sistem Mimarileri Tasarlıyorum."];
         let i = 0;
         let timer;
         
@@ -361,10 +371,10 @@
                 if (word.length > 0) {
                     document.getElementById('typewriter').innerHTML += word.shift();
                 } else {
-                    setTimeout(deletingEffect, 2000);
+                    setTimeout(deletingEffect, 2500);
                     return false;
                 }
-                timer = setTimeout(loopTyping, 80);
+                timer = setTimeout(loopTyping, 90);
             };
             loopTyping();
         }
@@ -384,38 +394,42 @@
                     typingEffect();
                     return false;
                 }
-                timer = setTimeout(loopDeleting, 40);
+                timer = setTimeout(loopDeleting, 50);
             };
             loopDeleting();
         }
 
-        // Dinamik Animasyon (Intersection Observer) Kodları
-        document.addEventListener("DOMContentLoaded", function() {
-            // Daktilo efektini başlat
-            typingEffect();
+        // Akıllı Kaydırma Efekti (Daha Okunabilir Ayarlar)
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('.scroll-section');
+            const triggerBottom = window.innerHeight * 0.95; // Bölümlerin daha erken açılması için
+            const fadeThreshold = window.innerHeight * 0.5; // Ekranın yarısına gelene kadar kaybolmasın
 
-            // Scroll animasyonlarını ayarla
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.15
-            };
+            sections.forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+                
+                // Aşağıdan Gelenlerin Açılması
+                if (sectionTop < triggerBottom) {
+                    section.classList.add('visible');
+                } else {
+                    section.classList.remove('visible');
+                }
 
-            const observer = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('active');
-                        // Sadece bir kere çalışmasını istiyorsan alttaki satırı açabilirsin:
-                        // observer.unobserve(entry.target);
-                    }
-                });
-            }, observerOptions);
-
-            const reveals = document.querySelectorAll('.reveal');
-            reveals.forEach(reveal => {
-                observer.observe(reveal);
+                // Yukarıda Kalanların Gölgelenmesi (Geciktirildi)
+                if (sectionTop < -fadeThreshold) {
+                    section.classList.add('fade-out');
+                } else {
+                    section.classList.remove('fade-out');
+                }
             });
         });
+
+        // Sayfa yüklendiğinde başlat
+        document.addEventListener("DOMContentLoaded", () => {
+            typingEffect();
+            window.dispatchEvent(new Event('scroll'));
+        });
+
     </script>
 </body>
 </html>
