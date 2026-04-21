@@ -3,48 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hilal Hocaoğlu | Backend & Yapay Zeka Geliştiricisi</title>
+    <title>Hilal Hocaoğlu | Yazılım Mühendisi & Yapay Zeka</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #2dd4bf;
-            --bg-color: #0f172a;
-            --text-color: #f8fafc;
-            --card-bg: #1e293b;
+            --bg-color: #09090b; /* Çok koyu modern arka plan */
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --gradient-start: #3b82f6; /* Mavi */
+            --gradient-end: #8b5cf6; /* Mor */
         }
+
         * {
             box-sizing: border-box;
             scroll-behavior: smooth;
         }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Inter', sans-serif;
             background-color: var(--bg-color);
-            color: var(--text-color);
+            color: var(--text-main);
             margin: 0;
             padding: 0;
-            line-height: 1.6;
+            line-height: 1.7;
+            overflow-x: hidden;
+            position: relative;
         }
+
+        /* Arka Plan Bulanık Renk Küreleri (Modern Efekt) */
+        .bg-glow-1 {
+            position: absolute; top: -10%; left: -10%; width: 50vw; height: 50vw;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
+            z-index: -1; filter: blur(90px);
+        }
+        .bg-glow-2 {
+            position: absolute; bottom: 20%; right: -10%; width: 40vw; height: 40vw;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, transparent 70%);
+            z-index: -1; filter: blur(90px);
+        }
+
         /* Navigasyon Barı */
         nav {
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(15, 23, 42, 0.95);
+            background: rgba(9, 9, 11, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             padding: 1.2rem 0;
             text-align: center;
             z-index: 1000;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid var(--glass-border);
         }
         nav a {
-            color: var(--text-color);
+            color: var(--text-muted);
             text-decoration: none;
             margin: 0 1.5rem;
-            font-size: 1.1rem;
-            font-weight: 500;
+            font-size: 1rem;
+            font-weight: 400;
             transition: color 0.3s;
+            letter-spacing: 0.5px;
         }
-        nav a:hover { color: var(--primary-color); }
-        
+        nav a:hover { color: var(--text-main); }
+
         /* Kahraman (Hero) Bölümü */
         header {
             height: 100vh;
@@ -53,85 +77,107 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            /* Arka plana şık bir kod/geliştirici görseli efekti eklendi */
-            background: linear-gradient(rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.9)), url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') center/cover;
+            padding: 0 20px;
+        }
+        .gradient-text {
+            background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
         h1 { 
-            font-size: 4.5rem; 
+            font-size: 5rem; 
+            font-weight: 800;
             margin-bottom: 0.5rem; 
-            letter-spacing: 1px;
+            letter-spacing: -1.5px;
+            line-height: 1.1;
         }
         .typing-container { 
-            font-size: 1.8rem; 
+            font-size: 1.5rem; 
+            font-weight: 300;
+            color: var(--text-muted);
             height: 40px;
+            margin-top: 1rem;
         }
-        #typewriter { color: var(--primary-color); font-weight: bold; }
-        
+        #typewriter { color: var(--text-main); font-weight: 600; }
+
         /* Genel Bölüm Stilleri */
-        section { padding: 6rem 10%; }
+        section { padding: 8rem 10% 4rem; position: relative; }
         h2 { 
-            font-size: 2.5rem; 
-            text-align: center; 
+            font-size: 2.2rem; 
+            font-weight: 600;
             margin-bottom: 3rem; 
-            color: var(--primary-color); 
-            text-transform: uppercase;
-            letter-spacing: 2px;
+            color: var(--text-main);
+            letter-spacing: -0.5px;
         }
         
-        /* Kart Grid Sistemi */
+        /* Glassmorphism Kart Grid Sistemi */
         .grid { 
             display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
             gap: 2rem; 
         }
         .card {
-            background: var(--card-bg);
-            padding: 2rem;
-            border-radius: 12px;
-            transition: transform 0.3s, box-shadow 0.3s;
-            border: 1px solid rgba(255,255,255,0.05);
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s;
         }
         .card:hover { 
-            transform: translateY(-10px); 
-            box-shadow: 0 10px 20px -5px rgba(45, 212, 191, 0.2);
+            transform: translateY(-8px); 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            border: 1px solid rgba(139, 92, 246, 0.3);
         }
-        .card h3 { margin-top: 0; font-size: 1.4rem;}
+        .card h3 { margin-top: 0; font-size: 1.3rem; font-weight: 600; }
+        .card p { color: var(--text-muted); font-size: 0.95rem; }
+        .date-text { font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 1rem; display: block; }
         
         /* Etiketler (Yetenekler/Teknolojiler) */
+        .tag-container { margin-top: 2rem; }
         .tag {
             display: inline-block;
-            background: rgba(45, 212, 191, 0.1);
-            color: var(--primary-color);
-            padding: 0.4rem 1rem;
-            border-radius: 25px;
-            font-size: 0.9rem;
-            font-weight: 600;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-main);
+            padding: 0.4rem 1.2rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 400;
             margin-right: 0.5rem;
             margin-bottom: 0.8rem;
-            border: 1px solid rgba(45, 212, 191, 0.2);
+            border: 1px solid var(--glass-border);
+            transition: background 0.3s, border-color 0.3s;
         }
-        
+        .tag:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
         /* Footer */
         footer {
             text-align: center;
-            padding: 3rem;
-            background: var(--card-bg);
-            margin-top: 2rem;
+            padding: 4rem;
+            border-top: 1px solid var(--glass-border);
+            margin-top: 4rem;
         }
         .social-links a {
-            color: var(--text-color);
-            font-size: 2rem;
+            color: var(--text-muted);
+            font-size: 1.8rem;
             margin: 0 1rem;
             transition: color 0.3s, transform 0.3s;
             display: inline-block;
         }
         .social-links a:hover { 
-            color: var(--primary-color); 
-            transform: scale(1.2);
+            color: var(--text-main); 
+            transform: translateY(-5px);
         }
     </style>
 </head>
 <body>
+
+    <div class="bg-glow-1"></div>
+    <div class="bg-glow-2"></div>
 
     <nav>
         <a href="#hakkimda">Hakkımda</a>
@@ -141,31 +187,31 @@
     </nav>
 
     <header>
-        <h1>Hilal Hocaoğlu</h1>
+        <h1 class="gradient-text">Hilal Hocaoğlu</h1>
         <div class="typing-container">
-            Ben bir <span id="typewriter"></span><span style="color: var(--primary-color); animation: blink 1s infinite;">|</span>
+            <span id="typewriter"></span><span style="animation: blink 1s infinite; font-weight: 300;">|</span>
         </div>
     </header>
 
     <section id="hakkimda">
         <h2>Hakkımda</h2>
-        <div style="max-width: 800px; margin: 0 auto; text-align: center; font-size: 1.15rem;">
-            <p>Akdeniz Üniversitesi'nde 3. sınıf Bilgisayar Mühendisliği öğrencisiyim. Ölçeklenebilir yazılım çözümleri üretme, yapılandırılmış verileri işleme ve karmaşık sistem mimarisi problemlerini çözme konularında tutkuluyum. Kariyerimi arka uç (backend) geliştirme, veri boru hatları (data pipelines) ve yapay zeka entegrasyonları üzerine inşa ediyorum.</p>
+        <div style="max-width: 800px; font-size: 1.1rem; color: var(--text-muted);">
+            <p>Akdeniz Üniversitesi'nde 3. sınıf Bilgisayar Mühendisliği öğrencisiyim. Ölçeklenebilir yazılım çözümleri üretme, yapılandırılmış verileri işleme ve karmaşık sistem mimarisi problemlerini çözme konularında tutkuluyum. Kariyerimi yazılım mühendisliği, veri boru hatları (data pipelines) ve yapay zeka entegrasyonları ekseninde modern teknolojilerle inşa ediyorum.</p>
         </div>
     </section>
 
-    <section id="deneyim" style="background: var(--card-bg);">
+    <section id="deneyim">
         <h2>Deneyim</h2>
         <div class="grid">
-            <div class="card" style="background: var(--bg-color);">
+            <div class="card">
                 <h3>Öğrenci Destek Ekibi Üyesi</h3>
-                <p style="color: var(--primary-color); font-weight: bold;">Akdeniz Üniversitesi Bilgi İşlem | Kasım 2025 - Devam Ediyor</p>
-                <p>Üniversitenin BT sistemleri, ağ erişimi ve yazılım sorunlarıyla ilgili öğrencilere teknik sorun giderme ve destek hizmeti sağlıyorum.</p>
+                <span class="date-text gradient-text">Kasım 2025 - Devam Ediyor</span>
+                <p>Akdeniz Üniversitesi Bilgi İşlem Daire Başkanlığı bünyesinde, üniversitenin BT sistemleri, ağ erişimi ve yazılım sorunlarıyla ilgili teknik sorun giderme ve destek hizmeti sağlıyorum.</p>
             </div>
-            <div class="card" style="background: var(--bg-color);">
+            <div class="card">
                 <h3>Yazılım Geliştirme Stajyeri</h3>
-                <p style="color: var(--primary-color); font-weight: bold;">SAN TSG | Haziran 2024 - Ağustos 2024</p>
-                <p>Yapay zeka destekli bir dokümantasyon asistanı olan "RAGby" projesinin arka uç geliştirmesine takım arkadaşlarımla birlikte katkıda bulundum. RAG altyapısı için karmaşık JSON veri setlerini işleyerek veri boru hatları tasarladım ve SQL sorgularını optimize ettim.</p>
+                <span class="date-text gradient-text">Haziran 2025 - Ağustos 2025</span>
+                <p>SAN TSG bünyesinde, yapay zeka destekli "RAGby" dokümantasyon asistanının arka uç geliştirmesine katkıda bulundum. RAG altyapısı için JSON veri setlerini işleyerek veri boru hatları tasarladım ve SQL sorgularını optimize ettim.</p>
             </div>
         </div>
     </section>
@@ -174,26 +220,26 @@
         <h2>Projeler</h2>
         <div class="grid">
             <div class="card">
-                <h3>NutriScan <span style="font-size: 0.9rem; color: #94a3b8; font-weight: normal;">(TÜBİTAK Proje Adayı)</span></h3>
-                <p>Yapay zeka destekli, kişiselleştirilmiş gıda alerjisi asistanı. Google ML Kit ile hibrit bir OCR tarama sistemi tasarlandı ve gerçek zamanlı JSON yüklerini işleyebilen ölçeklenebilir bir mimari kuruldu.</p>
-                <div style="margin-top: 1.5rem;">
+                <h3>NutriScan <span style="font-size: 0.85rem; font-weight: 400; color: var(--text-muted);">(TÜBİTAK Proje Adayı)</span></h3>
+                <p>Yapay zeka destekli, kişiselleştirilmiş gıda alerjisi asistanı. Gerçek zamanlı JSON yüklerini işleyebilen ölçeklenebilir mimari ve hibrit OCR tarama sistemi.</p>
+                <div class="tag-container">
                     <span class="tag">ASP.NET Core</span>
                     <span class="tag">PostgreSQL</span>
-                    <span class="tag">OCR</span>
+                    <span class="tag">OCR / ML Kit</span>
                 </div>
             </div>
             <div class="card">
                 <h3>Eko-Kampüs</h3>
-                <p>Kampüs çapında kullanılacak çevre dostu bir uygulama. Yapay zeka tabanlı fotoğraf sınıflandırma modelleri aracılığıyla geri dönüştürülebilir atıkları ayırt eden sistemin arka uç altyapısı geliştirildi.</p>
-                <div style="margin-top: 1.5rem;">
+                <p>Kampüs çapında çevre dostu bir uygulama. Yapay zeka tabanlı fotoğraf sınıflandırma modelleri aracılığıyla geri dönüştürülebilir atıkları ayırt eden backend altyapısı.</p>
+                <div class="tag-container">
                     <span class="tag">Django REST API</span>
                     <span class="tag">Machine Learning</span>
                 </div>
             </div>
             <div class="card">
-                <h3>RAGby <span style="font-size: 0.9rem; color: #94a3b8; font-weight: normal;">(Takım Projesi)</span></h3>
-                <p>Yapay zeka tabanlı bir dokümantasyon aracı. LLM işlem hattının doğruluğunu artırmak için vektör gömme depolaması ve anlamsal arama özellikleri entegre edildi.</p>
-                <div style="margin-top: 1.5rem;">
+                <h3>RAGby <span style="font-size: 0.85rem; font-weight: 400; color: var(--text-muted);">(Takım Projesi)</span></h3>
+                <p>Yapay zeka tabanlı dokümantasyon aracı. LLM işlem hattının doğruluğunu artırmak için vektör gömme depolaması ve anlamsal arama özellikleri.</p>
+                <div class="tag-container">
                     <span class="tag">Python / Flask</span>
                     <span class="tag">ChromaDB</span>
                     <span class="tag">LangChain</span>
@@ -201,48 +247,48 @@
             </div>
             <div class="card">
                 <h3>Kişisel Tarif Uygulaması</h3>
-                <p>Bağımsız olarak tasarlayıp geliştirdiğim kişisel bir mobil yemek tarifi uygulaması.</p>
-                <div style="margin-top: 1.5rem;">
+                <p>Mobil platformlar için bağımsız olarak tasarlayıp geliştirdiğim, kullanıcı dostu kişisel yemek tarifi yönetim uygulaması.</p>
+                <div class="tag-container">
                     <span class="tag">Kotlin</span>
-                    <span class="tag">Mobil Geliştirme</span>
+                    <span class="tag">Android Development</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="yetenekler" style="background: var(--card-bg);">
-        <h2>Yetenekler & Teknolojiler</h2>
-        <div style="max-width: 900px; margin: 0 auto; text-align: center;">
-            <div style="margin-bottom: 2.5rem;">
-                <h3 style="margin-bottom: 1rem; color: #cbd5e1;">Programlama Dilleri</h3>
+    <section id="yetenekler">
+        <h2>Teknolojiler</h2>
+        <div class="card" style="padding: 3rem;">
+            <div style="margin-bottom: 2rem;">
+                <h3 style="margin-bottom: 1rem; font-size: 1rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">Programlama Dilleri</h3>
                 <span class="tag">Python</span> <span class="tag">Java</span> <span class="tag">C# (.NET)</span> 
                 <span class="tag">Kotlin</span> <span class="tag">JavaScript/TypeScript</span> <span class="tag">SQL</span>
             </div>
-            <div style="margin-bottom: 2.5rem;">
-                <h3 style="margin-bottom: 1rem; color: #cbd5e1;">Framework & Kütüphaneler</h3>
-                <span class="tag">ASP.NET Core Web API</span> <span class="tag">Django</span> <span class="tag">React Native</span> 
+            <div style="margin-bottom: 2rem;">
+                <h3 style="margin-bottom: 1rem; font-size: 1rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">Framework & Kütüphaneler</h3>
+                <span class="tag">ASP.NET Core</span> <span class="tag">Django</span> <span class="tag">React Native</span> 
                 <span class="tag">Expo</span> <span class="tag">Flask</span> <span class="tag">LangChain</span>
             </div>
             <div>
-                <h3 style="margin-bottom: 1rem; color: #cbd5e1;">Veritabanı & Araçlar</h3>
+                <h3 style="margin-bottom: 1rem; font-size: 1rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">Veritabanı & Altyapı</h3>
                 <span class="tag">PostgreSQL</span> <span class="tag">MS SQL Server</span> <span class="tag">MySQL</span> 
                 <span class="tag">ChromaDB</span> <span class="tag">Git</span> <span class="tag">Linux</span> 
-                <span class="tag">RESTful APIs</span> <span class="tag">AWS EC2</span>
+                <span class="tag">REST APIs</span> <span class="tag">AWS EC2</span>
             </div>
         </div>
     </section>
 
     <footer>
-        <div class="social-links" style="margin-bottom: 1.5rem;">
+        <div class="social-links" style="margin-bottom: 2rem;">
             <a href="https://linkedin.com/in/s-hilal-hocaoğlu-a8311221a/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
             <a href="mailto:hilalhocaoglu20@gmail.com" title="E-posta"><i class="fas fa-envelope"></i></a>
         </div>
-        <p>&copy; 2026 Hilal Hocaoğlu. Tüm hakları saklıdır.</p>
+        <p style="color: var(--text-muted); font-size: 0.9rem;">&copy; 2026 Hilal Hocaoğlu. Tüm hakları saklıdır.</p>
     </footer>
 
     <script>
-        // Dinamik Daktilo (Typing) Efekti
-        const words = ["Backend Geliştiricisiyim.", "Bilgisayar Mühendisliği Öğrencisiyim.", "Yapay Zeka Tutkunuyum."];
+        // Dinamik Daktilo (Typing) Efekti - Güncellenmiş Metinler
+        const words = ["Yazılım Mühendisiyim.", "Yapay Zeka Çözümleri Geliştiriyorum.", "Sistem Mimarileri Tasarlıyorum."];
         let i = 0;
         let timer;
         
@@ -252,10 +298,10 @@
                 if (word.length > 0) {
                     document.getElementById('typewriter').innerHTML += word.shift();
                 } else {
-                    setTimeout(deletingEffect, 2000);
+                    setTimeout(deletingEffect, 2500);
                     return false;
                 }
-                timer = setTimeout(loopTyping, 100);
+                timer = setTimeout(loopTyping, 80);
             };
             loopTyping();
         }
@@ -275,12 +321,12 @@
                     typingEffect();
                     return false;
                 }
-                timer = setTimeout(loopDeleting, 50);
+                timer = setTimeout(loopDeleting, 40);
             };
             loopDeleting();
         }
 
-        // İmleç yanıp sönme animasyonu için CSS ekleme
+        // İmleç yanıp sönme animasyonu
         const style = document.createElement('style');
         style.innerHTML = `
             @keyframes blink {
@@ -291,7 +337,7 @@
         `;
         document.head.appendChild(style);
 
-        // Efekti başlat
+        // Sayfa yüklendiğinde efekti başlat
         window.onload = function() {
             typingEffect();
         };
