@@ -101,11 +101,26 @@
             font-weight: 700;
             letter-spacing: -2px;
             line-height: 1;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
+        }
+
+        /* Daktilo Efekti Stili */
+        .typing-container { 
+            font-size: 1.5rem; 
+            font-weight: 400;
+            color: var(--muted);
+            height: 40px;
+            margin-bottom: 30px;
+        }
+        #typewriter { color: var(--text); font-weight: 600; }
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0; }
+            100% { opacity: 1; }
         }
 
         .hero-desc {
-            max-width: 600px;
+            max-width: 650px;
             font-size: 1.2rem;
             color: var(--muted);
             margin-bottom: 30px;
@@ -139,11 +154,13 @@
             background: rgba(255, 255, 255, 0.05);
             transform: translateY(-10px);
             border-color: rgba(99, 102, 241, 0.3);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
         }
 
         .card h3 {
             font-size: 1.25rem;
             margin-bottom: 15px;
+            color: var(--text);
         }
 
         .card p {
@@ -210,17 +227,22 @@
             transform: scale(1.1);
         }
 
-        /* Animasyon Girişi */
+        /* Dinamik Animasyon (Reveal Effect) Sınıfları */
         .reveal {
             opacity: 0;
-            transform: translateY(30px);
-            transition: 1s all ease;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
         }
 
         .reveal.active {
             opacity: 1;
             transform: translateY(0);
         }
+        
+        /* Kartlara gecikmeli gelme efekti */
+        .grid .card:nth-child(1) { transition-delay: 0.1s; }
+        .grid .card:nth-child(2) { transition-delay: 0.2s; }
+        .grid .card:nth-child(3) { transition-delay: 0.3s; }
 
     </style>
 </head>
@@ -238,7 +260,12 @@
     <header>
         <div class="status-badge">Akdeniz Üniversitesi Bilgisayar Mühendisliği Öğrencisi</div>
         <h1>Şükran Hilal <br> Hocaoğlu</h1>
-        <p class="hero-desc">Ölçeklenebilir arka uç sistemleri, yapay zeka entegrasyonları ve verimlilik odaklı mimariler üzerine çalışan bir mühendis adayıyım.</p>
+        
+        <div class="typing-container">
+            Ben bir <span id="typewriter"></span><span style="color: var(--accent); animation: blink 1s infinite;">|</span>
+        </div>
+
+        <p class="hero-desc">Ölçeklenebilir backend sistemleri, yapay zeka entegrasyonları ve verimlilik odaklı mimariler üzerine çalışan bir mühendis adayıyım.</p>
         <div class="social-icons" style="justify-content: flex-start;">
             <a href="https://www.linkedin.com/in/%C5%9F-hilal-hocao%C4%9Flu-a8311221a/" target="_blank"><i class="fab fa-linkedin"></i></a>
             <a href="mailto:hilalhocaoglu20@gmail.com"><i class="fas fa-envelope"></i></a>
@@ -248,7 +275,7 @@
     <section id="hakkimda" class="reveal">
         <h2>Hakkımda</h2>
         <div style="max-width: 800px; font-size: 1.2rem; color: var(--muted);">
-            <p>Akdeniz Üniversitesi'nde 3. sınıf öğrencisiyim[cite: 6]. Karmaşık sistem mimarilerini sadeleştirme ve yapay zekayı pratik çözümlere dönüştürme konusunda tutkuluyum[cite: 4]. .NET ecosystem, Python ve modern AI araçlarıyla projeler geliştiriyorum[cite: 20].</p>
+            <p>Akdeniz Üniversitesi'nde 3. sınıf öğrencisiyim. Karmaşık sistem mimarilerini sadeleştirme ve yapay zekayı pratik çözümlere dönüştürme konusunda tutkuluyum. .NET ekosistemi, Python ve modern AI araçlarıyla projeler geliştiriyorum.</p>
         </div>
     </section>
 
@@ -261,9 +288,9 @@
                 <p><strong>SAN TSG</strong><br>AI tabanlı "RAGby" asistanı için veri boru hatları ve backend optimizasyonları üzerine çalışıldı.</p>
             </div>
             <div class="card">
-                <span style="color: var(--accent); font-weight: 600;">Kasım 2025 - Günümüz</span>
+                <span style="color: var(--accent); font-weight: 600;">Kasım 2025 - Devam Ediyor</span>
                 <h3>Student Support Team Member</h3>
-                <p><strong>Akdeniz Üniversitesi Bilgi İşlem</strong><br>Üniversite IT altyapısı ve sistem yönetimi süreçlerinde teknik destek operasyonları[cite: 9].</p>
+                <p><strong>Akdeniz Üniversitesi Bilgi İşlem</strong><br>Üniversite IT altyapısı ve sistem yönetimi süreçlerinde teknik destek operasyonları.</p>
             </div>
         </div>
     </section>
@@ -273,21 +300,21 @@
         <div class="grid">
             <div class="card">
                 <h3>NutriScan</h3>
-                <p>Yapay zeka destekli, kişiselleştirilmiş gıda alerjisi asistanı (TÜBİTAK Proje Adayı)[cite: 14].</p>
+                <p>Yapay zeka destekli, kişiselleştirilmiş gıda alerjisi asistanı (TÜBİTAK Proje Adayı).</p>
                 <div class="tags">
                     <span class="tag">ASP.NET Core</span> <span class="tag">PostgreSQL</span> <span class="tag">AI</span>
                 </div>
             </div>
             <div class="card">
                 <h3>Eko-Kampüs</h3>
-                <p>Atık yönetimi ve çevre bilinci için AI destekli mobil uygulama altyapısı[cite: 16].</p>
+                <p>Atık yönetimi ve çevre bilinci için AI destekli mobil uygulama altyapısı.</p>
                 <div class="tags">
                     <span class="tag">Django</span> <span class="tag">REST API</span> <span class="tag">ML</span>
                 </div>
             </div>
             <div class="card">
                 <h3>RAGby</h3>
-                <p>Vektör veritabanları ve semantik arama ile LLM doğruluğunu artıran dokümantasyon aracı[cite: 18].</p>
+                <p>Vektör veritabanları ve semantik arama ile LLM doğruluğunu artıran dokümantasyon aracı.</p>
                 <div class="tags">
                     <span class="tag">Python</span> <span class="tag">LangChain</span> <span class="tag">ChromaDB</span>
                 </div>
@@ -323,21 +350,72 @@
     </footer>
 
     <script>
-        // Sayfa kaydırıldığında elemanların belirmesi (Reveal Effect)
-        function reveal() {
-            var reveals = document.querySelectorAll(".reveal");
-            for (var i = 0; i < reveals.length; i++) {
-                var windowHeight = window.innerHeight;
-                var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 150;
-                if (elementTop < windowHeight - elementVisible) {
-                    reveals[i].classList.add("active");
+        // Daktilo Efekti JavaScript Kodları
+        const words = ["Backend Geliştiricisiyim.", "Yapay Zeka Tutkunuyum.", "Sistem Mimarileri Tasarlıyorum."];
+        let i = 0;
+        let timer;
+        
+        function typingEffect() {
+            let word = words[i].split("");
+            var loopTyping = function() {
+                if (word.length > 0) {
+                    document.getElementById('typewriter').innerHTML += word.shift();
+                } else {
+                    setTimeout(deletingEffect, 2000);
+                    return false;
                 }
-            }
+                timer = setTimeout(loopTyping, 80);
+            };
+            loopTyping();
         }
-        window.addEventListener("scroll", reveal);
-        // İlk yüklemede çalıştır
-        reveal();
+
+        function deletingEffect() {
+            let word = words[i].split("");
+            var loopDeleting = function() {
+                if (word.length > 0) {
+                    word.pop();
+                    document.getElementById('typewriter').innerHTML = word.join("");
+                } else {
+                    if (words.length > (i + 1)) {
+                        i++;
+                    } else {
+                        i = 0;
+                    }
+                    typingEffect();
+                    return false;
+                }
+                timer = setTimeout(loopDeleting, 40);
+            };
+            loopDeleting();
+        }
+
+        // Dinamik Animasyon (Intersection Observer) Kodları
+        document.addEventListener("DOMContentLoaded", function() {
+            // Daktilo efektini başlat
+            typingEffect();
+
+            // Scroll animasyonlarını ayarla
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        // Sadece bir kere çalışmasını istiyorsan alttaki satırı açabilirsin:
+                        // observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            const reveals = document.querySelectorAll('.reveal');
+            reveals.forEach(reveal => {
+                observer.observe(reveal);
+            });
+        });
     </script>
 </body>
 </html>
